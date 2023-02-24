@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "G7il4sPUYnLZx4Hki9HWxdvc/33bVhmrCGGtcVeaLP2z0X0IJkb7y4+JXZbVNwEzBXuyqgpBvuxZDnPTfHeGvg==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Amir\\Desktop\\C#\\Inventory\\Inventory\\Inventory.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Amir\\.nuget\\packages\\microsoft.visualstudio.azure.containers.tools.targets\\1.17.0\\microsoft.visualstudio.azure.containers.tools.targets.1.17.0.nupkg.sha512"
+  ],
+  "logs": []
+}
