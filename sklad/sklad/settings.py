@@ -124,8 +124,8 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 #Login and logout sites 
-LOGIN_REDIRECT_URL = ""
-LOGOUT_REDIRECT_URL = ""
+LOGIN_REDIRECT_URL = "sklad/"
+LOGOUT_REDIRECT_URL = "sklad/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
