@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en" >
+    <head>
+        <title>Sklad</title>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+        
+        <!--CDN icons-->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+        
+        
+        <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+    
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+            font-size: 3.5rem;
+            }
+        }
+    
+        .b-example-divider {
+            height: 3rem;
+            background-color: rgba(0, 0, 0, .1);
+            border: solid rgba(0, 0, 0, .15);
+            border-width: 1px 0;
+            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+        }
+    
+        .b-example-vr {
+            flex-shrink: 0;
+            width: 1.5rem;
+            height: 100vh;
+        }
+    
+        .bi {
+            vertical-align: -.125em;
+            fill: currentColor;
+        }
+    
+        .nav-scroller {
+            position: relative;
+            z-index: 2;
+            height: 2.75rem;
+            overflow-y: hidden;
+        }
+    
+        .nav-scroller .nav {
+            display: flex;
+            flex-wrap: nowrap;
+            padding-bottom: 1rem;
+            margin-top: -1px;
+            overflow-x: auto;
+            text-align: center;
+            white-space: nowrap;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        .dropdown-menu {
+        width: 250%;
+        }
+
+        .wrapper .sidebar{
+        background: rgb(33, 37, 41);
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 225px;
+        height: 100%;
+        padding: 20px 0;
+        transition: all 0.5s ease;
+        }
+
+        .hr-thickness {
+        border: none; /* remove the default border */
+        border-top: 1px solid white; /* add a new border on the top */
+        }
+        </style>
+    
+        
+        <!-- Custom styles for this template -->
+        <link href="dashboard.css" rel="stylesheet">
+        <style type="text/css">/* Chart.js */
+        @keyframes chartjs-render-animation{from{opacity:.99}to{opacity:1}}.chartjs-render-monitor{animation:chartjs-render-animation 1ms}.chartjs-size-monitor,.chartjs-size-monitor-expand,.chartjs-size-monitor-shrink{position:absolute;direction:ltr;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1}.chartjs-size-monitor-expand>div{position:absolute;width:1000000px;height:1000000px;left:0;top:0}.chartjs-size-monitor-shrink>div{position:absolute;width:200%;height:200%;left:0;top:0}
+        </style>
+    </head>
+
+    <body>
+        
+        <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark" data-bs-theme="dark">
+            <div class="container-fluid">
+                
+                <a class="navbar-brand" href="index.html">
+                    &nbsp <img src="https://upload.wikimedia.org/wikipedia/commons/6/61/Pure-storage-vector-logo.svg" alt="Logo" width="130" height="30" class="d-inline-block align-text-top">
+                </a>
+            </div>
+        </nav>
+
+        <nav class="navbar navbar-expand-lg bg-body-tertiary bg-dark fixed-top" data-bs-theme="dark">
+            <div class="container-fluid">
+                
+                <a class="navbar-brand" href="index.html">
+                    &nbsp <img src="https://www.truenas.com/wp-content/uploads/2021/10/truenas-logo-color.png" alt="Logo" width="180" height="30" class="d-inline-block align-text-top">
+                </a>
+
+            <div class="btn-group dropstart">
+                <button type="button" class="btn bg-dark text-white dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Uživatel
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                </svg>
+            </button>
+            <form class="dropdown-menu p-4">
+                <div class="mb-3">
+                  <label for="exampleDropdownFormEmail2" class="form-label">Email address</label>
+                  <input type="email" class="form-control" id="exampleDropdownFormEmail2" placeholder="email@example.com">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleDropdownFormPassword2" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="exampleDropdownFormPassword2" placeholder="Password">
+                </div>
+                <div class="mb-3">
+                  <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="dropdownCheck2">
+                    <label class="form-check-label" for="dropdownCheck2">
+                      Remember me
+                    </label>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary">Sign in</button>
+            </form>
+
+            </div>
+
+        </nav>
+
+
+        
+        <div class="wrapper">
+        <!--Top menu -->
+        <div class="sidebar">
+            <div class="profile">
+
+                <br>
+                <br>
+                <br>
+
+                <h4 href="#" class="text-white">
+                    &nbsp
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-box-seam d-inline-block" viewBox="0 0 16 16">
+                      <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
+                    </svg>
+                    Produkty
+
+                    <hr class="hr-thickness">
+
+                    <button type="button" class="btn bg-dark text-white">
+                        &nbsp
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16">
+                            <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
+                        </svg>
+                        &nbsp Nový produkt
+                    </button>
+                </h4>
+
+                <br>
+
+                <h4 href="#" class="text-white">
+                    &nbsp
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-truck" viewBox="0 0 16 16">
+                        <path d="M0 3.5A1.5 1.5 0 0 1 1.5 2h9A1.5 1.5 0 0 1 12 3.5V5h1.02a1.5 1.5 0 0 1 1.17.563l1.481 1.85a1.5 1.5 0 0 1 .329.938V10.5a1.5 1.5 0 0 1-1.5 1.5H14a2 2 0 1 1-4 0H5a2 2 0 1 1-3.998-.085A1.5 1.5 0 0 1 0 10.5v-7zm1.294 7.456A1.999 1.999 0 0 1 4.732 11h5.536a2.01 2.01 0 0 1 .732-.732V3.5a.5.5 0 0 0-.5-.5h-9a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .294.456zM12 10a2 2 0 0 1 1.732 1h.768a.5.5 0 0 0 .5-.5V8.35a.5.5 0 0 0-.11-.312l-1.48-1.85A.5.5 0 0 0 13.02 6H12v4zm-9 1a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm9 0a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                    </svg>
+                    Zásilky
+
+                    <hr class="hr-thickness">
+
+                    <button type="button" class="btn bg-dark text-white">
+                        &nbsp
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-down" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M1 3.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5zM8 6a.5.5 0 0 1 .5.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 0 1 .708-.708L7.5 12.293V6.5A.5.5 0 0 1 8 6z"/>
+                        </svg>
+                        &nbsp Přijem
+                    </button>
+                    <br>
+                    <button type="button" class="btn bg-dark text-white">
+                        &nbsp
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-bar-up" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M8 10a.5.5 0 0 0 .5-.5V3.707l2.146 2.147a.5.5 0 0 0 .708-.708l-3-3a.5.5 0 0 0-.708 0l-3 3a.5.5 0 1 0 .708.708L7.5 3.707V9.5a.5.5 0 0 0 .5.5zm-7 2.5a.5.5 0 0 1 .5-.5h13a.5.5 0 0 1 0 1h-13a.5.5 0 0 1-.5-.5z"/>
+                        </svg>
+                        &nbsp Výdej
+                    </button>
+                </h4>
+
+                <br>
+
+                <h4 href="#" class="text-white">
+                    &nbsp
+                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
+                        <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872l-.1-.34zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+                    </svg>
+                    Nastavení
+
+                    <hr class="hr-thickness">
+
+                    <button type="button" class="btn bg-dark text-white">
+                        &nbsp
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list-ul" viewBox="0 0 16 16">
+                            <path fill-rule="evenodd" d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                        </svg>
+                        &nbsp Seznam skladu
+                    </button>
+                    <br>
+                    <button type="button" class="btn bg-dark text-white">
+                        &nbsp
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                            <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/>
+                        </svg>
+                        &nbsp Uživatelé
+                    </button>
+                </h4>
+            </div>
+
+        </div>
+
+
+            
+                <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class="">   </div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <h1 class="h2">Seznam produktu</h1>
+                        <div class="btn-toolbar mb-2 mb-md-0">
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+                        <form class="d-flex">
+                            <input class="form-control me-sm-2" type="text" placeholder="Search">
+                            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+                        <div class="btn-group me-2" role="group" aria-label="First group">
+                            <button type="button" class="btn btn-outline-secondary">1</button>
+                            <button type="button" class="btn btn-outline-secondary">2</button>
+                            <button type="button" class="btn btn-outline-secondary">3</button>
+                            <button type="button" class="btn btn-outline-secondary">4</button>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped table-sm">
+                            <thead>
+                                <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Header</th>
+                                <th scope="col">Header</th>
+                                <th scope="col">Header</th>
+                                <th scope="col">Header</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <td>1,001</td>
+                                <td>random</td>
+                                <td>data</td>
+                                <td>placeholder</td>
+                                <td>text</td>
+                                </tr>
+                                <tr>
+                                <td>1,002</td>
+                                <td>placeholder</td>
+                                <td>irrelevant</td>
+                                <td>visual</td>
+                                <td>layout</td>
+                                </tr>
+                                <tr>
+                                <td>1,003</td>
+                                <td>data</td>
+                                <td>rich</td>
+                                <td>dashboard</td>
+                                <td>tabular</td>
+                                </tr>
+                                <tr>
+                                <td>1,003</td>
+                                <td>information</td>
+                                <td>placeholder</td>
+                                <td>illustrative</td>
+                                <td>data</td>
+                                </tr>
+                                <tr>
+                                <td>1,004</td>
+                                <td>text</td>
+                                <td>random</td>
+                                <td>layout</td>
+                                <td>dashboard</td>
+                                </tr>
+                                <tr>
+                                <td>1,005</td>
+                                <td>dashboard</td>
+                                <td>irrelevant</td>
+                                <td>text</td>
+                                <td>placeholder</td>
+                                </tr>
+                                <tr>
+                                <td>1,006</td>
+                                <td>dashboard</td>
+                                <td>illustrative</td>
+                                <td>rich</td>
+                                <td>data</td>
+                                </tr>
+                                <tr>
+                                <td>1,007</td>
+                                <td>placeholder</td>
+                                <td>tabular</td>
+                                <td>information</td>
+                                <td>irrelevant</td>
+                                </tr>
+                                <tr>
+                                <td>1,008</td>
+                                <td>random</td>
+                                <td>data</td>
+                                <td>placeholder</td>
+                                <td>text</td>
+                                </tr>
+                                <tr>
+                                <td>1,009</td>
+                                <td>placeholder</td>
+                                <td>irrelevant</td>
+                                <td>visual</td>
+                                <td>layout</td>
+                                </tr>
+                                <tr>
+                                <td>1,010</td>
+                                <td>data</td>
+                                <td>rich</td>
+                                <td>dashboard</td>
+                                <td>tabular</td>
+                                </tr>
+                                <tr>
+                                <td>1,011</td>
+                                <td>information</td>
+                                <td>placeholder</td>
+                                <td>illustrative</td>
+                                <td>data</td>
+                                </tr>
+                                <tr>
+                                <td>1,012</td>
+                                <td>text</td>
+                                <td>placeholder</td>
+                                <td>layout</td>
+                                <td>dashboard</td>
+                                </tr>
+                                <tr>
+                                <td>1,013</td>
+                                <td>dashboard</td>
+                                <td>irrelevant</td>
+                                <td>text</td>
+                                <td>visual</td>
+                                </tr>
+                                <tr>
+                                <td>1,014</td>
+                                <td>dashboard</td>
+                                <td>illustrative</td>
+                                <td>rich</td>
+                                <td>data</td>
+                                </tr>
+                                <tr>
+                                <td>1,015</td>
+                                <td>random</td>
+                                <td>tabular</td>
+                                <td>information</td>
+                                <td>text</td>
+                                </tr>
+                                <tr>
+                                <td>1,016</td>
+                                <td>random</td>
+                                <td>data</td>
+                                <td>placeholder</td>
+                                <td>text</td>
+                                </tr>
+                                <tr>
+                                <td>1,017</td>
+                                <td>random</td>
+                                <td>data</td>
+                                <td>placeholder</td>
+                                <td>text</td>
+                                </tr>
+                                <tr>
+                                <td>1,018</td>
+                                <td>random</td>
+                                <td>data</td>
+                                <td>placeholder</td>
+                                <td>text</td>
+                                </tr>
+                                <tr>
+                                <td>1,019</td>
+                                <td>random</td>
+                                <td>data</td>
+                                <td>placeholder</td>
+                                <td>text</td>
+                                </tr>
+                                <tr>
+                                <td>1,020</td>
+                                <td>random</td>
+                                <td>data</td>
+                                <td>placeholder</td>
+                                <td>text</td>
+                                </tr>
+                                <tr>
+                                <td>1,021</td>
+                                <td>random</td>
+                                <td>data</td>
+                                <td>placeholder</td>
+                                <td>text</td>
+                                </tr>
+                                <tr>
+                                <td>1,022</td>
+                                <td>random</td>
+                                <td>data</td>
+                                <td>placeholder</td>
+                                <td>text</td>
+                                </tr>
+                                <tr>
+                                <td>1,023</td>
+                                <td>random</td>
+                                <td>data</td>
+                                <td>placeholder</td>
+                                <td>text</td>
+                                </tr>
+                                <tr>
+                                <td>1,024</td>
+                                <td>random</td>
+                                <td>data</td>
+                                <td>placeholder</td>
+                                <td>text</td>
+                                </tr>
+                                <tr>
+                                <td>1,025</td>
+                                <td>random</td>
+                                <td>data</td>
+                                <td>placeholder</td>
+                                <td>text</td>
+                                </tr>
+                                <tr>
+                                <td>1,026</td>
+                                <td>random</td>
+                                <td>data</td>
+                                <td>placeholder</td>
+                                <td>text</td>
+                                </tr>
+                                <tr>
+                                <td>1,027</td>
+                                <td>random</td>
+                                <td>data</td>
+                                <td>placeholder</td>
+                                <td>text</td>
+                                </tr>
+                                <tr>
+                                <td>1,028</td>
+                                <td>random</td>
+                                <td>data</td>
+                                <td>placeholder</td>
+                                <td>text</td>
+                                </tr>
+                                <tr>
+                                <td>1,029</td>
+                                <td>random</td>
+                                <td>data</td>
+                                <td>placeholder</td>
+                                <td>text</td>
+                                </tr>
+                                <tr>
+                                <td>1,030</td>
+                                <td>random</td>
+                                <td>data</td>
+                                <td>placeholder</td>
+                                <td>text</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </main>
+            </div>
+        </div>
+        
+        
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+        
+            <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script><script src="dashboard.js"></script>
+          
+        
+    </body>
+</html>
